@@ -9,6 +9,7 @@ public class PlayerMovements : MonoBehaviour
 
     private Rigidbody2D _rb;
     private Camera _camera;
+    public Animator animator;
 
 
     private void Awake()
@@ -19,9 +20,11 @@ public class PlayerMovements : MonoBehaviour
 
     private void FixedUpdate()
     {
+        animator.SetBool("IsMoving", InputManager.Movement.sqrMagnitude > 0);
         _rb.velocity = InputManager.Movement * _movementSpeed;
         _rb.rotation = LookAtMouse();
     }
+
 
     private float LookAtMouse()
     {
