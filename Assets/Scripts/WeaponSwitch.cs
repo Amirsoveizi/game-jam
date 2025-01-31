@@ -5,15 +5,15 @@ using UnityEngine;
 public class WeaponSwitch : MonoBehaviour
 {
     public Animator animator;
-    private int _weaponNumber = 1;
+    public int _weaponNumber = 1;
     private int _maxWeapons = 4;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) ChangeWeapon(1);
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeWeapon(2);
-        else if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeWeapon(3);
-        else if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeWeapon(4);
+        if (Input.GetKeyDown(KeyCode.Alpha1)) ChangeWeapon(1); //knife
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeWeapon(2); //pistol
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeWeapon(3); //rifle
+        else if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeWeapon(4); //shotgun
 
         // Mouse scroll wheel selection
         float scroll = Input.GetAxis("Mouse ScrollWheel");
@@ -26,7 +26,10 @@ public class WeaponSwitch : MonoBehaviour
             ChangeWeapon(_weaponNumber - 1 < 1 ? _maxWeapons : _weaponNumber - 1);
         }
     }
-
+    public int getWeapon()
+    {
+        return _weaponNumber;
+    }
     private void ChangeWeapon(int weaponID)
     {
         if (_weaponNumber != weaponID)
