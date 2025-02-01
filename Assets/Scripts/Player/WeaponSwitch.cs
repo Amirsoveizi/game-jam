@@ -8,7 +8,7 @@ public class WeaponSwitch : MonoBehaviour
     public int _weaponNumber = 1;
     private int _maxWeapons = 4;
 
-    private float knifeTime = 0f;
+    //private float knifeTime = 0f;
 
 
     void Update()
