@@ -23,13 +23,13 @@ public class BulletMoveScript : MonoBehaviour
 
         GameObject impactEffect = Instantiate(BulletEffect, transform.position, Quaternion.identity);
 
-        if (BulletEffect != null)
-        {
-            Debug.Log("Here");
+        // if (BulletEffect != null)
+        // {
+        //     Debug.Log("Here");
             
-            Destroy(impactEffect, impactEffect.GetComponent<Animator>().runtimeAnimatorController.animationClips[0].length);
+        //     Destroy(impactEffect, impactEffect.GetComponent<Animator>().runtimeAnimatorController.animationClips[0].length);
 
-        }
+        // }
     }
 
 }
