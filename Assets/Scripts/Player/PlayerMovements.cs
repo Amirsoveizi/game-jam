@@ -1,16 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovements : MonoBehaviour
 {
     [SerializeField]
     private float _movementSpeed = 5f;
+    [SerializeField]
+    private float _rotationSpeed = 10f;
 
     private Rigidbody2D _rb;
     private Camera _camera;
     public Animator animator;
 
+    private Vector2 _moveInput;
 
     private void Awake()
     {
@@ -18,20 +19,29 @@ public class PlayerMovements : MonoBehaviour
         _camera = Camera.main;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        animator.SetBool("IsMoving", InputManager.Movement.sqrMagnitude > 0);
-        _rb.velocity = InputManager.Movement * _movementSpeed;
-        _rb.rotation = LookAtMouse();
+        _moveInput = InputManager.Movement;
+        animator.SetBool("IsMoving", _moveInput.sqrMagnitude > 0);
     }
 
+    private void FixedUpdate()
+    {
+        _rb.velocity = _moveInput * _movementSpeed;
+        RotateTowardsMouse();
+    }
 
-    private float LookAtMouse()
+    private void RotateTowardsMouse()
     {
         float camDis = _camera.transform.position.y - transform.position.y;
         Vector3 mouse = _camera.ScreenToWorldPoint(new Vector3(InputManager.Direction.x, InputManager.Direction.y, camDis));
-        float angleRad = Mathf.Atan2(mouse.y - transform.position.y, mouse.x - transform.position.x);
-        return (180 / Mathf.PI) * angleRad - 90; 
-    }
 
+        Vector2 direction = (mouse - transform.position).normalized;
+        if (direction.sqrMagnitude < 0.001f) return;
+
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        float smoothedAngle = Mathf.LerpAngle(_rb.rotation, targetAngle, _rotationSpeed * Time.fixedDeltaTime);
+
+        _rb.MoveRotation(smoothedAngle);
+    }
 }

@@ -13,11 +13,20 @@ public class CameraController : MonoBehaviour
     private Vector3 _vel = Vector3.zero;
     [SerializeField]
     private float _mouseInfluence = 0.5f;
-    [SerializeField]
     private float _maxMouseMovement = 1f;
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.LeftControl)) 
+        {
+            _maxMouseMovement = 5f;
+        }
+        else 
+        {
+            _maxMouseMovement = 1f;
+        }
+
+
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;      
         Vector3 mouseOffset = (mouseWorldPosition - target.position) * _mouseInfluence;
