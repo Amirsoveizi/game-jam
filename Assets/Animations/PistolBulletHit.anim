@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KnifeSlash
+  m_Name: PistolBulletHit
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -20,14 +20,20 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 8d2abb6fb5da8774c99f71f86d0af5a7, type: 3}
-    - time: 0.02
-      value: {fileID: 21300000, guid: 9739269c4827dab4fab113d2f0bf0f23, type: 3}
+      value: {fileID: 21300000, guid: d03b8795b4f805842819cf6b26200eeb, type: 3}
+    - time: 0.1
+      value: {fileID: 21300000, guid: 15fd39a0b225cf0419fc9227f1522708, type: 3}
+    - time: 0.2
+      value: {fileID: 21300000, guid: ce81f6f0f316bb54293505856b1e4a4a, type: 3}
+    - time: 0.3
+      value: {fileID: 21300000, guid: fa55786710912df4dbc4a7170f965d78, type: 3}
+    - time: 0.4
+      value: {fileID: 21300000, guid: ae2d83fc8df46e34b8d18e05b38c62e9, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 50
+  m_SampleRate: 10
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -43,14 +49,17 @@ AnimationClip:
       isPPtrCurve: 1
       isIntCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 8d2abb6fb5da8774c99f71f86d0af5a7, type: 3}
-    - {fileID: 21300000, guid: 9739269c4827dab4fab113d2f0bf0f23, type: 3}
+    - {fileID: 21300000, guid: d03b8795b4f805842819cf6b26200eeb, type: 3}
+    - {fileID: 21300000, guid: 15fd39a0b225cf0419fc9227f1522708, type: 3}
+    - {fileID: 21300000, guid: ce81f6f0f316bb54293505856b1e4a4a, type: 3}
+    - {fileID: 21300000, guid: fa55786710912df4dbc4a7170f965d78, type: 3}
+    - {fileID: 21300000, guid: ae2d83fc8df46e34b8d18e05b38c62e9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.04
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

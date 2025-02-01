@@ -8,17 +8,16 @@ public class WeaponSwitch : MonoBehaviour
     public int _weaponNumber = 1;
     private int _maxWeapons = 4;
 
-    //private float knifeTime = 0f;
+    // private float knifeTime = 0f;
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) ChangeWeapon(1); //knife
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeWeapon(2); //pistol
-        else if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeWeapon(3); //rifle
-        else if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeWeapon(4); //shotgun
+        if (Input.GetKeyDown(KeyCode.Alpha1)) ChangeWeapon(2); //knife
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeWeapon(3); //pistol
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeWeapon(4); //rifle
+        else if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeWeapon(1); //shotgun
 
-        // Mouse scroll wheel selection
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll > 0f)
         {
@@ -39,8 +38,8 @@ public class WeaponSwitch : MonoBehaviour
 
     private IEnumerator ResetKnifeTrigger()
     {
-    yield return new WaitForSeconds(1f); // Wait for 1 second
-    animator.ResetTrigger("KnifeUsed");
+        yield return new WaitForSeconds(1f);
+        animator.ResetTrigger("KnifeUsed");
     }
     public int getWeapon()
     {
