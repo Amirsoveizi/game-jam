@@ -114,11 +114,11 @@ void Update()
         else
         {
             Instantiate(bulletPF, muzzle.transform.position, muzzle.transform.rotation);
-            muzzle.transform.Rotate(0, 0, 20);
+            muzzle.transform.Rotate(0, 0, 5);
             Instantiate(bulletPF, muzzle.transform.position, muzzle.transform.rotation);
-            muzzle.transform.Rotate(0, 0, -40);
+            muzzle.transform.Rotate(0, 0, -10);
             Instantiate(bulletPF, muzzle.transform.position, muzzle.transform.rotation);
-            muzzle.transform.Rotate(0, 0, 20);
+            muzzle.transform.Rotate(0, 0, 5);
         }
     }
 
