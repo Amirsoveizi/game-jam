@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BulletScript : MonoBehaviour
 {
@@ -95,10 +96,21 @@ void Update()
                 break;
         }
     }
-
+    [ContextMenu("Fire")]
     void spawnBullet()
     {
-        Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
+        if (bulletPF != shotgunBulletPF)
+            Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
+        else
+        {
+            Debug.Log("transform.rotation.eulerAngles " + transform.rotation.eulerAngles);
+            Instantiate(bulletPF, muzzle.transform.position, muzzle.transform.rotation);
+            muzzle.transform.Rotate(0, 0, 20);
+            Instantiate(bulletPF, muzzle.transform.position, muzzle.transform.rotation);
+            muzzle.transform.Rotate(0, 0, -40);
+            Instantiate(bulletPF, muzzle.transform.position, muzzle.transform.rotation);
+            muzzle.transform.Rotate(0, 0, 20);
+        }
     }
 
     void knife()
