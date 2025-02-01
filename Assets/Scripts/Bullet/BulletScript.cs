@@ -37,39 +37,49 @@ void Update()
 {
     timer += Time.deltaTime;
 
+    if (weaponSwitch.getWeapon() == 3)
+        {
+            if (Input.GetKey(KeyCode.Mouse0) && timer >= fireRate)
+            {
+                FindWeapon();
+                SpawnBullet();
+                timer = 0;
+            }
+        }
     if (Input.GetKeyDown(KeyCode.Mouse0))
-    {
+        {
+            
         if (firstShot)
         {
-            findWeapon(); // Call findWeapon() to set the correct fireRate
+            FindWeapon(); // Call findWeapon() to set the correct fireRate
             if (!isKnife)
             {
-                spawnBullet();
+                SpawnBullet();
             }
             else
             {
-                knife();
+                Knife();
             }
             firstShot = false; // Set firstShot to false after the initial shot
             timer = 0;         // Reset timer after the first shot
         }
         else if (timer >= fireRate) // Normal fire rate check after the first shot
         {
-            findWeapon();
+            FindWeapon();
             if (!isKnife)
             {
-                spawnBullet();
+                SpawnBullet();
             }
             else
             {
-                knife();
+                Knife();
             }
             timer = 0;
         }
     }
 }
 
-    void findWeapon()
+    void FindWeapon()
     {
         int weaponNumber = weaponSwitch.getWeapon();
         fireRate = weaponFireRates[weaponNumber];
@@ -82,28 +92,27 @@ void Update()
             case 2:
                 isKnife = false;
                 bulletPF = pistolBulletPF;
-                muzzle.transform.localPosition = new Vector3(-0.02F, 0.572F, 0);
+                muzzle.transform.localPosition = new Vector3(-0.02F, 0.634F, 0);
                 break;
             case 3:
                 isKnife = false;
                 bulletPF = rifleBulletPF;
-                muzzle.transform.localPosition = new Vector3(-0.04F, 0.69F, 0);
+                muzzle.transform.localPosition = new Vector3(-0.04F, 0.73F, 0);
                 break;
             case 4:
                 isKnife = false;
                 bulletPF = shotgunBulletPF;
-                muzzle.transform.localPosition = new Vector3(-0.02F, 0.66F, 0);
+                muzzle.transform.localPosition = new Vector3(-0.02F, 0.72F, 0);
                 break;
         }
     }
     [ContextMenu("Fire")]
-    void spawnBullet()
+    void SpawnBullet()
     {
         if (bulletPF != shotgunBulletPF)
             Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
         else
         {
-            Debug.Log("transform.rotation.eulerAngles " + transform.rotation.eulerAngles);
             Instantiate(bulletPF, muzzle.transform.position, muzzle.transform.rotation);
             muzzle.transform.Rotate(0, 0, 20);
             Instantiate(bulletPF, muzzle.transform.position, muzzle.transform.rotation);
@@ -113,7 +122,7 @@ void Update()
         }
     }
 
-    void knife()
+    void Knife()
     {
 
     }

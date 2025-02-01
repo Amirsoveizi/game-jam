@@ -9,16 +9,24 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D _rb;
     private Transform _player;
     private Vector2 _moveDirection;
-
+    public GameObject bulletPF;
+    public GameObject muzzle;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _player = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Shoot();
+        }
+    }
     private void FixedUpdate()
     {
-        if (_player == null) return;
+        
+            if (_player == null) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, _player.position);
 
@@ -34,7 +42,10 @@ public class EnemyAI : MonoBehaviour
 
         RotateTowardsPlayer();
     }
-
+    private void Shoot()
+    {
+        Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
+    }
     private void RotateTowardsPlayer()
     {
         if (_moveDirection.sqrMagnitude > 0.01f)
