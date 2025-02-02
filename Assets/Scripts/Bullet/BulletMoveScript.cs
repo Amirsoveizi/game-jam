@@ -4,18 +4,34 @@ using UnityEngine;
 
 public class BulletMoveScript : MonoBehaviour
 {
-    //public GameObject BulletEffect; 
-
-
     public float moveSpeed;
     private Rigidbody2D _rb;
-
+    public int damageE = 10;
+    public int damageP = 1;
+    // public int maxHealth=100;
+    // private int currentHealth;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-
         _rb.velocity = transform.up * moveSpeed;
         Destroy(gameObject, 2f);
+        damageE = Random.Range(7, 14);
+        if (tag == "ShotgunB PF")
+        {
+            damageP = 13;
+        }
+        else if (tag == "PistolB PF")
+        {
+            damageP = 15;
+        }
+        else if (tag == "RifleB PF")
+        {
+            damageP = 6;
+        }
+        else if (tag == "ComradeB PF")
+        {
+            damageP = 10;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -24,32 +40,46 @@ public class BulletMoveScript : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-                Debug.Log("Damaged Player");
+                Health health = collision.gameObject.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.TakeDamageP(damageE);
+                }
             }
-            //shayad badam lazem beshe in if ha. Age tira be enemy haye dige bokhore destroy beshan ya na?!
-
-            /* if (collision.gameObject.tag != "EnemyB PF"
-            && collision.gameObject.tag != "Enemy") */
+            else if (collision.gameObject.tag == "Comrade")
             {
-                Destroy(gameObject);
+                Health health = collision.gameObject.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.TakeDamage(damageE);
+                }
             }
+            Destroy(gameObject);
+        }
+        else if (tag == "PistolB PF" || tag == "RifleB PF" || tag == "ComradeB PF")
+        {
+            if (collision.gameObject.tag == "Enemy")
+            {
+                Health health = collision.gameObject.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.TakeDamage(damageP);
+                }
+            }
+            Destroy(gameObject);
         }
         else
         {
-            if (collision.gameObject.tag != "ShotgunB PF") 
-            Destroy(gameObject);
+            if (collision.gameObject.tag != "ShotgunB PF")
+            {
+                Health health = collision.gameObject.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.TakeDamage(damageP);
+                }
+                Destroy(gameObject);
+            }
+
         }
-        //GameObject impactEffect = Instantiate(BulletEffect, transform.position, Quaternion.identity);
-
-        // if (BulletEffect != null)
-        // {
-        //     Debug.Log("Here");
-            
-        //     Destroy(impactEffect, impactEffect.GetComponent<Animator>().runtimeAnimatorController.animationClips[0].length);
-
-        // }
     }
-
 }
-
-
