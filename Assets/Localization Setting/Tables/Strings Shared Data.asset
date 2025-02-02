@@ -43,6 +43,10 @@ MonoBehaviour:
     m_Key: LoadLevel
     m_Metadata:
       m_Items: []
+  - m_Id: 60046372229120
+    m_Key: CreditsInfo
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

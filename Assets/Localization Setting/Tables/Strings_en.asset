@@ -46,6 +46,13 @@ MonoBehaviour:
     m_Localized: Load Level
     m_Metadata:
       m_Items: []
+  - m_Id: 60046372229120
+    m_Localized: 'Group leader : Amir soveizi
+
+      members : Parham Ghaforian,soheil
+      salavati,navid shiraze,kia abbasi'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
