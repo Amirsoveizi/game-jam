@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7690119452027711795}
   - component: {fileID: 7690119452027711794}
   - component: {fileID: 7690119452027711790}
-  - component: {fileID: 7690119452027711791}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Tank
@@ -157,19 +156,6 @@ MonoBehaviour:
   wallAvoidanceRotation: 45
   bulletPF: {fileID: 8661297534767530829, guid: de057a23fe82c574ba728d7dcb12940e, type: 3}
   muzzle: {fileID: 7690119452351292100}
---- !u!114 &7690119452027711791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7690119452027711797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89ccb751211923e4388675c6ad3e22b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 500
 --- !u!1 &7690119452351292100
 GameObject:
   m_ObjectHideFlags: 0
