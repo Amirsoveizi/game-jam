@@ -89,7 +89,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2158238883597673869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.67, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -3.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -236,6 +236,7 @@ MonoBehaviour:
   shotgunBulletPF: {fileID: 1932688041119092207, guid: 038f11706fc41f9499d2f93555fd08f5, type: 3}
   muzzle: {fileID: 2158238883497866120}
   fireRate: 5
+  weaponNum: 0
   knifeFireRate: 1.5
   pistolFireRate: 0.5
   rifleFireRate: 0.2

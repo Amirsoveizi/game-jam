@@ -32,11 +32,15 @@ public class BulletMoveScript : MonoBehaviour
         {
             damageP = 10;
         }
+        else if (tag == "TankB PF")
+        {
+            damageE = 30;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (tag == "EnemyB PF")
+        if (tag == "EnemyB PF" || tag == "TankB PF")
         {
             if (collision.gameObject.tag == "Player")
             {
@@ -54,6 +58,7 @@ public class BulletMoveScript : MonoBehaviour
                     health.TakeDamage(damageE);
                 }
             }
+            Debug.Log(collision.gameObject.tag);
             Destroy(gameObject);
         }
         else if (tag == "PistolB PF" || tag == "RifleB PF" || tag == "ComradeB PF")

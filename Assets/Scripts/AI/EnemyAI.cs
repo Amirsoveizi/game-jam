@@ -126,7 +126,7 @@ public class EnemyAI : MonoBehaviour
             nextFireTime = Time.time + fireRate;
         }
     }
-
+    [ContextMenu("FIre")]
     private void Shoot()
     {   
         SoundManager.Instance?.PlaySound(enemyShot);

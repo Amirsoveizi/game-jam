@@ -10,6 +10,15 @@ TagManager:
   - PistolB PF
   - EnemyB PF
   - Enemy
+  - ComradeB PF
+  - Text
+  - Pause
+  - Comrade
+  - HUD
+  - Health
+  - Wall
+  - Tank
+  - TankB PF
   layers:
   - Default
   - TransparentFX
