@@ -1,14 +1,10 @@
-using System.Collections;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
-using UnityEngine.SceneManagement;
+
 
 public class Hub : MonoBehaviour
 {
-    private GameObject hud;
-    private GameObject pause;
+    private static GameObject hud;
+    private static GameObject pause;
 
     private void Awake()
     {
@@ -24,7 +20,6 @@ public class Hub : MonoBehaviour
     }
     public void GoToPause()
     {
-        Debug.Log("Pressed");
         hud.SetActive(false);
         pause.SetActive(true);
         PauseGame();

@@ -11,10 +11,14 @@ public class Utils : MonoBehaviour
     [SerializeField] public TMP_FontAsset fontFa;
     private bool isSetLanguageActive = false;
 
+    public static Utils instance;
+
     private void Awake()
     {
+        instance = this;
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
         UpdateFont(LocalizationSettings.SelectedLocale);
+
     }
     private void OnDestroy()
     {
@@ -23,7 +27,7 @@ public class Utils : MonoBehaviour
 
     private void OnLocaleChanged(Locale locale)
     {
-        UpdateFont(locale);
+        instance.UpdateFont(locale);
     }
 
     public void UpdateFont(Locale locale)
@@ -54,9 +58,9 @@ public class Utils : MonoBehaviour
 
     public void OnChangeLanguage()
     {
-        if (isSetLanguageActive) return;
-        StartCoroutine(SetLanguage());
-        isSetLanguageActive = false;
+        if (instance.isSetLanguageActive) return;
+        instance.StartCoroutine(SetLanguage());
+        instance.isSetLanguageActive = false;
     }
 
     IEnumerator SetLanguage()
@@ -78,7 +82,7 @@ public class Utils : MonoBehaviour
 
     public void LoadSceneAsync(string sceneName)
     {
-        StartCoroutine(LoadSceneCoroutine(sceneName));
+        instance.StartCoroutine(LoadSceneCoroutine(sceneName));
     }
 
     private IEnumerator LoadSceneCoroutine(string sceneName)
