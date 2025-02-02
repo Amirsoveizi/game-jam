@@ -6,6 +6,7 @@ public class BulletMoveScript : MonoBehaviour
 {
     //public GameObject BulletEffect; 
 
+
     public float moveSpeed;
     private Rigidbody2D _rb;
 

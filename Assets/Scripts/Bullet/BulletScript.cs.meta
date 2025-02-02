@@ -3,7 +3,12 @@ guid: d3e4d97d29d32c4429f1664c95d69675
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pistolBulletPF: {instanceID: 0}
+  - rifleBulletPF: {instanceID: 0}
+  - shotgunBulletPF: {instanceID: 0}
+  - muzzle: {instanceID: 0}
+  - pistolShot: {fileID: 8300000, guid: cd75cfb149a8dc346a2c69f9d561f151, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Audio;
 
 public class ComradeAI : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class ComradeAI : MonoBehaviour
     
     public GameObject bulletPF;
     public GameObject muzzle;
+
+    private AudioClip pistolShot;
+
+    private void Start() {
+            pistolShot = Resources.Load<AudioClip>("SFX/PistolShot");
+    }
 
     private void Awake()
     {
@@ -99,6 +106,7 @@ public class ComradeAI : MonoBehaviour
 
     private void Shoot()
     {
+        SoundManager.Instance?.PlaySound(pistolShot);
         Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
     }
 

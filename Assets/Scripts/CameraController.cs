@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftControl)) 
         {
-            _maxMouseMovement = 5f;
+            _maxMouseMovement = 7f;
         }
         else 
         {

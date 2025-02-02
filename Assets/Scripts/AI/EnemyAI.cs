@@ -1,4 +1,5 @@
 using UnityEngine;
+using Audio;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -19,6 +20,14 @@ public class EnemyAI : MonoBehaviour
 
     public GameObject bulletPF;
     public GameObject muzzle;
+
+    private AudioClip enemyShot;
+
+    private void Start() 
+    {
+        enemyShot = Resources.Load<AudioClip>("SFX/EnemyShot");
+    }
+
 
     private void Awake()
     {
@@ -119,7 +128,8 @@ public class EnemyAI : MonoBehaviour
     }
 
     private void Shoot()
-    {
+    {   
+        SoundManager.Instance?.PlaySound(enemyShot);
         Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
     }
 
