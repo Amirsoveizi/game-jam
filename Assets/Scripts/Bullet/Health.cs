@@ -55,6 +55,15 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        Respawn();
     }
+
+    private void Respawn()
+    {
+        currentHealth = 100;
+        UpdateHealthUI();
+        gameObject.transform.position = CheckPoint.respawnPoint;
+    }
+
 }
