@@ -6,7 +6,7 @@ using Audio;
 public class WeaponSwitch : MonoBehaviour
 {
     public Animator animator;
-    public int _weaponNumber = 1;
+    public int _weaponNumber = 0;
     private int _maxWeapons = 4;
 
     // private float knifeTime = 0f;
