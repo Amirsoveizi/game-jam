@@ -11,7 +11,7 @@ public class Ammo : MonoBehaviour
 
     public static int currentAmmoShotgun;
 
-    private TextMeshProUGUI KheshabText;
+    private static TextMeshProUGUI KheshabText;
 
     void Start()
     {
@@ -48,7 +48,7 @@ public class Ammo : MonoBehaviour
                 break;
         }
     }
-    private void UpdateَAmmoUI(int ammo)
+    public static void UpdateَAmmoUI(int ammo)
     {
         if (KheshabText != null)
         {

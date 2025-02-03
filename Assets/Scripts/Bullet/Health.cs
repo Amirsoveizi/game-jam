@@ -55,8 +55,15 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
-        if (gameObject.tag == "Player") Respawn();
+        
+        if (gameObject.tag == "Player") 
+        {
+            Respawn();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Respawn()
@@ -65,6 +72,9 @@ public class Health : MonoBehaviour
         Ammo.currentAmmoPistol = 50;
         Ammo.currentAmmoRifle = 50;
         Ammo.currentAmmoShotgun = 50;
+        Ammo.UpdateَAmmoUI(Ammo.currentAmmoPistol);
+        Ammo.UpdateَAmmoUI(Ammo.currentAmmoRifle);
+        Ammo.UpdateَAmmoUI(Ammo.currentAmmoShotgun);
         UpdateHealthUI();
         gameObject.transform.position = CheckPoint.respawnPoint;
     }
