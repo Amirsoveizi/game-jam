@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e4d97d29d32c4429f1664c95d69675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 2158238883597673864}
   pistolBulletPF: {fileID: 8787272466143533829, guid: 8abd00e08eff28f4db1d7710d2cffc9e, type: 3}
   rifleBulletPF: {fileID: 6379124582539111224, guid: 92736b4ab7b84df44b6f83378a11c6dc, type: 3}
   shotgunBulletPF: {fileID: 1932688041119092207, guid: 038f11706fc41f9499d2f93555fd08f5, type: 3}

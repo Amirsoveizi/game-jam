@@ -6,6 +6,8 @@ using Audio;
 
 public class BulletScript : MonoBehaviour
 {
+
+    public Animator animator;
     private GameObject bulletPF;
     public GameObject pistolBulletPF;
     public GameObject rifleBulletPF;
@@ -22,12 +24,17 @@ public class BulletScript : MonoBehaviour
     private AudioClip knifeSlash;
 
     public int weaponNum;
+
+    public int damageKn = 40;
     
 
-    [SerializeField] private float knifeFireRate = 1.5f;
+    [SerializeField] private float knifeFireRate = 0f;
     [SerializeField] private float pistolFireRate = 0.5f;
     [SerializeField] private float rifleFireRate = 0.2f;
     [SerializeField] private float shotgunFireRate = 1f;
+
+
+    
 
     private Dictionary<int, float> weaponFireRates = new Dictionary<int, float>();
 
@@ -50,7 +57,7 @@ void Update()
 {
     timer += Time.deltaTime;
 
-    if (!Input.GetKey(KeyCode.LeftControl)) // Check if Left Control is NOT held
+    if (!Input.GetKey(KeyCode.LeftControl))
     {
 
 
@@ -156,8 +163,31 @@ void Update()
         }
     }
 
-    void Knife()
+ void Knife()
     {
+        animator.SetTrigger("KnifeUsed");
+        StartCoroutine(ResetKnifeTrigger());
+
         SoundManager.Instance?.PlaySound(knifeSlash, 2f);
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1f);
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.CompareTag("Enemy"))
+            {
+                Health health = hit.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.TakeDamageP(damageKn);
+                }
+            }
+        }
     }
+
+    private IEnumerator ResetKnifeTrigger()
+    {
+        yield return new WaitForSeconds(1f);
+        animator.ResetTrigger("KnifeUsed");
+    }
+
 }

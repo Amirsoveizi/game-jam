@@ -15,7 +15,7 @@ public class BulletMoveScript : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _rb.velocity = transform.up * moveSpeed;
         Destroy(gameObject, 2f);
-        damageE = Random.Range(7, 14);
+        damageE = Random.Range(3, 7);
         if (tag == "ShotgunB PF")
         {
             damageP = 13;
@@ -40,7 +40,7 @@ public class BulletMoveScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (tag == "EnemyB PF" || tag == "TankB PF")
+         if (tag == "EnemyB PF" || tag == "TankB PF")
         {
             if (collision.gameObject.tag == "Player")
             {

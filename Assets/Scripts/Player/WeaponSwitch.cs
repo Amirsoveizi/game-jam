@@ -9,8 +9,6 @@ public class WeaponSwitch : MonoBehaviour
     public int _weaponNumber = 0;
     private int _maxWeapons = 4;
 
-    // private float knifeTime = 0f;
-
     private AudioClip pistolEquip;
     private AudioClip rifleEquip;
     private AudioClip shotgunEquip;
@@ -40,12 +38,6 @@ public class WeaponSwitch : MonoBehaviour
         {
             ChangeWeapon(_weaponNumber - 1 < 1 ? _maxWeapons : _weaponNumber - 1);
         }
-
-         if (Input.GetKeyDown(KeyCode.Mouse0) && _weaponNumber == 1)
-         {
-            animator.SetTrigger("KnifeUsed");
-            StartCoroutine(ResetKnifeTrigger());
-         }
     }
 
     private IEnumerator ResetKnifeTrigger()
