@@ -58,12 +58,11 @@ public class BulletMoveScript : MonoBehaviour
                     health.TakeDamage(damageE);
                 }
             }
-            Debug.Log(collision.gameObject.tag);
             Destroy(gameObject);
         }
         else if (tag == "PistolB PF" || tag == "RifleB PF" || tag == "ComradeB PF")
         {
-            if (collision.gameObject.tag == "Enemy")
+            if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Tank")
             {
                 Health health = collision.gameObject.GetComponent<Health>();
                 if (health != null)
@@ -71,18 +70,21 @@ public class BulletMoveScript : MonoBehaviour
                     health.TakeDamage(damageP);
                 }
             }
-            Destroy(gameObject);
+            if (collision.gameObject.tag != "EnemyB PF") Destroy(gameObject);
         }
         else
         {
             if (collision.gameObject.tag != "ShotgunB PF")
             {
-                Health health = collision.gameObject.GetComponent<Health>();
-                if (health != null)
+                if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Tank")
                 {
-                    health.TakeDamage(damageP);
+                    Health health = collision.gameObject.GetComponent<Health>();
+                    if (health != null)
+                    {
+                        health.TakeDamage(damageP);
+                    }
                 }
-                Destroy(gameObject);
+                if (collision.gameObject.tag != "EnemyB PF") Destroy(gameObject);
             }
 
         }

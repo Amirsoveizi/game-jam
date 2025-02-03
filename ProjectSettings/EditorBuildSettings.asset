@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tank.unity
     guid: 10ecb668a7eba8642aa63ea0cb5d58ee
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 9379c22d7e096f7479561f78dc9b42ef
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 3173e5b9e03efba418bb5bdea7e0f7aa, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: b54f77085bfecc149960f4e885d5d073, type: 2}

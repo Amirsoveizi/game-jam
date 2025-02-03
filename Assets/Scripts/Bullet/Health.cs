@@ -10,9 +10,9 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        healthText = GameObject.FindGameObjectWithTag("Health").GetComponent<TextMeshProUGUI>();
+        if (gameObject.tag == "Player") healthText = GameObject.FindGameObjectWithTag("Health").GetComponent<TextMeshProUGUI>();
         currentHealth = maxHealth;
-        UpdateHealthUI();
+        if (gameObject.tag == "Player") UpdateHealthUI();
         Debug.Log(gameObject.name + " started with " + currentHealth + " health.");
     }
 
@@ -55,8 +55,8 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        //Destroy(gameObject);
-        Respawn();
+        Destroy(gameObject);
+        if (gameObject.tag == "Player") Respawn();
     }
 
     private void Respawn()
