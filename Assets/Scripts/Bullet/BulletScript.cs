@@ -131,14 +131,14 @@ void Update()
     {
         if (weaponNum == 2) 
         {
-            SoundManager.Instance?.PlaySound(pistolShot, 2f);
+            SoundManager.Instance?.PlaySound(pistolShot, 4f);
         } 
         else if (weaponNum == 3) 
         {
-            SoundManager.Instance?.PlaySound(rifleShot, 2f);
+            SoundManager.Instance?.PlaySound(rifleShot, 4f);
         } else if (weaponNum == 4) 
         {
-            SoundManager.Instance?.PlaySound(shotgunShot, 2f);
+            SoundManager.Instance?.PlaySound(shotgunShot, 4f);
         }
 
 

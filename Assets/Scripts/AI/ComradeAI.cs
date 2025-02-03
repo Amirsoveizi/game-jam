@@ -106,7 +106,7 @@ public class ComradeAI : MonoBehaviour
 
     private void Shoot()
     {
-        SoundManager.Instance?.PlaySound(pistolShot);
+        SoundManager.Instance?.PlaySound(pistolShot, 1.5f);
         Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
     }
 

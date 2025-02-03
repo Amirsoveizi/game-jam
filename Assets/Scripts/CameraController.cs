@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     private float _damping = 0.25f;
     private Vector3 _vel = Vector3.zero;
     [SerializeField]
-    private float _mouseInfluence = 0.5f;
+    private float _mouseInfluence = 0.8f;
     private float _maxMouseMovement = 1f;
 
     private void Update()

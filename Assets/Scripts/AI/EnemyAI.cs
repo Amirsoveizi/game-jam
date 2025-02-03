@@ -129,7 +129,7 @@ public class EnemyAI : MonoBehaviour
     [ContextMenu("FIre")]
     private void Shoot()
     {   
-        SoundManager.Instance?.PlaySound(enemyShot);
+        SoundManager.Instance?.PlaySound(enemyShot, 1.5f);
         Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
     }
 

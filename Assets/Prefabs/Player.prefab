@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2158238883597673864}
-  _weaponNumber: 1
+  _weaponNumber: 0
 --- !u!114 &2158238883597673866
 MonoBehaviour:
   m_ObjectHideFlags: 0

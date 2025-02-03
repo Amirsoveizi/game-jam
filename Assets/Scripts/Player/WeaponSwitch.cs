@@ -68,19 +68,19 @@ public class WeaponSwitch : MonoBehaviour
 
         if (_weaponNumber == 2) 
         {
-            SoundManager.Instance?.PlaySound(pistolEquip, 2f);
+            SoundManager.Instance?.PlaySound(pistolEquip, 4f);
         } 
         else if (_weaponNumber == 3) 
         {
-            SoundManager.Instance?.PlaySound(rifleEquip, 2f);
+            SoundManager.Instance?.PlaySound(rifleEquip, 3f);
         } 
         else if (_weaponNumber == 4) 
         {
-            SoundManager.Instance?.PlaySound(shotgunEquip, 2f);
+            SoundManager.Instance?.PlaySound(shotgunEquip, 4f);
         }
         else 
         {
-            SoundManager.Instance?.PlaySound(knifeEquip, 2f);
+            SoundManager.Instance?.PlaySound(knifeEquip, 4f);
         }
 
     }
