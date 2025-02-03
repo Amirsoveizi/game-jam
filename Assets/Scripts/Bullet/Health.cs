@@ -62,6 +62,9 @@ public class Health : MonoBehaviour
     private void Respawn()
     {
         currentHealth = 100;
+        Ammo.currentAmmoPistol = 50;
+        Ammo.currentAmmoRifle = 50;
+        Ammo.currentAmmoShotgun = 50;
         UpdateHealthUI();
         gameObject.transform.position = CheckPoint.respawnPoint;
     }

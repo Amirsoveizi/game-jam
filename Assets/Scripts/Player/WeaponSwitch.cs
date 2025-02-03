@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Audio;
-
+using TMPro;
 public class WeaponSwitch : MonoBehaviour
 {
     public Animator animator;
@@ -13,12 +13,15 @@ public class WeaponSwitch : MonoBehaviour
     private AudioClip rifleEquip;
     private AudioClip shotgunEquip;
     private AudioClip knifeEquip;
+    private TextMeshProUGUI KheshabText;
 
-    private void Start() {
+    private void Start()
+    {
         pistolEquip = Resources.Load<AudioClip>("SFX/PistolEquip");
         rifleEquip = Resources.Load<AudioClip>("SFX/RifleEquip");
         shotgunEquip = Resources.Load<AudioClip>("SFX/ShotgunEquip");
         knifeEquip = Resources.Load<AudioClip>("SFX/KnifeEquip");
+        KheshabText = GameObject.FindGameObjectWithTag("Ammo").GetComponent<TextMeshProUGUI>();
     }
 
 
@@ -58,19 +61,22 @@ public class WeaponSwitch : MonoBehaviour
         }
 
 
-        if (_weaponNumber == 2) 
+        if (_weaponNumber == 2)
         {
             SoundManager.Instance?.PlaySound(pistolEquip, 4f);
-        } 
-        else if (_weaponNumber == 3) 
+            KheshabText.text = Ammo.currentAmmoPistol.ToString();
+        }
+        else if (_weaponNumber == 3)
         {
             SoundManager.Instance?.PlaySound(rifleEquip, 3f);
-        } 
-        else if (_weaponNumber == 4) 
+            KheshabText.text = Ammo.currentAmmoRifle.ToString();
+        }
+        else if (_weaponNumber == 4)
         {
             SoundManager.Instance?.PlaySound(shotgunEquip, 4f);
+            KheshabText.text = Ammo.currentAmmoShotgun.ToString();
         }
-        else 
+        else
         {
             SoundManager.Instance?.PlaySound(knifeEquip, 4f);
         }
