@@ -55,8 +55,8 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        
-        if (gameObject.tag == "Player") 
+
+        if (gameObject.tag == "Player")
         {
             Respawn();
         }
@@ -69,14 +69,13 @@ public class Health : MonoBehaviour
     private void Respawn()
     {
         currentHealth = 100;
-        Ammo.currentAmmoPistol = 50;
-        Ammo.currentAmmoRifle = 50;
-        Ammo.currentAmmoShotgun = 50;
-        Ammo.UpdateَAmmoUI(Ammo.currentAmmoPistol);
-        Ammo.UpdateَAmmoUI(Ammo.currentAmmoRifle);
-        Ammo.UpdateَAmmoUI(Ammo.currentAmmoShotgun);
+        Ammo.ResetAmmo();
         UpdateHealthUI();
         gameObject.transform.position = CheckPoint.respawnPoint;
     }
-
+    public void Resethealth()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthUI();
+    }
 }

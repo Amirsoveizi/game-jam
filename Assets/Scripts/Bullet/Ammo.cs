@@ -55,4 +55,13 @@ public class Ammo : MonoBehaviour
             KheshabText.text = ammo.ToString();
         }
     }
+    public static void ResetAmmo()
+    {
+        currentAmmoPistol = 50;
+        currentAmmoRifle = 50;
+        currentAmmoShotgun = 50;
+        UpdateَAmmoUI(currentAmmoPistol);
+        UpdateَAmmoUI(currentAmmoRifle);
+        UpdateَAmmoUI(currentAmmoShotgun);
+    }
 }
