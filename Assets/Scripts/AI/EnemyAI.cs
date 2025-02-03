@@ -3,13 +3,19 @@ using Audio;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private float detectionRange = 12f;
-    [SerializeField] private float shootingRange = 8f;
-    [SerializeField] private float stoppingDistance = 4f;
+    [SerializeField] private float minDetectionRange = 5f;
+    [SerializeField] private float maxDetectionRange = 15f;
+    [SerializeField] private float minShootingRange = 5f;
+    [SerializeField] private float maxShootingRange = 10f;
+    [SerializeField] private float minStoppingDistance = 2f;
+    [SerializeField] private float maxStoppingDistance = 5f; 
     [SerializeField] private float moveSpeed = 4f;
-    [SerializeField] private float fireRate = 0.8f;
+    [SerializeField] private float minFireRate = 0.5f; 
+    [SerializeField] private float maxFireRate = 1.5f;
     [SerializeField] private float wallAvoidanceForce = 5f;
     [SerializeField] private float wallAvoidanceRotation = 45f;
+    [SerializeField] private float avoidanceRadius = 3f;
+    [SerializeField] private float avoidanceStrength = 0.5f;
 
     private Rigidbody2D _rb;
     private Transform _target;
@@ -17,21 +23,28 @@ public class EnemyAI : MonoBehaviour
     private float nextFireTime = 0f;
     private bool _isRotating = false;
     private bool targetSpotted = false;
+    private float stoppingDistance;
+    private float fireRate;
+    private float detectionRange;
+    private float shootingRange;
 
     public GameObject bulletPF;
     public GameObject muzzle;
 
     private AudioClip enemyShot;
 
-    private void Start() 
+    private void Start()
     {
         enemyShot = Resources.Load<AudioClip>("SFX/EnemyShot");
+        stoppingDistance = Random.Range(minStoppingDistance, maxStoppingDistance);
+        detectionRange = Random.Range(minDetectionRange, maxDetectionRange);
+        shootingRange = Random.Range(minShootingRange, maxShootingRange);
     }
-
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        fireRate = Random.Range(minFireRate, maxFireRate); // Randomize fire rate at the start
     }
 
     private void Update()
@@ -107,8 +120,21 @@ public class EnemyAI : MonoBehaviour
     private void MoveTowardsTarget()
     {
         if (_target == null) return;
-        
-        _moveDirection = (_target.position - transform.position).normalized;
+
+        Vector2 targetPosition = _target.position;
+        Vector2 directionToTarget = (targetPosition - (Vector2)transform.position).normalized;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, avoidanceRadius); 
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.CompareTag("Enemy") && hit.gameObject != gameObject)
+            {
+                Vector2 avoidanceDirection = ((Vector2)transform.position - (Vector2)hit.transform.position).normalized;
+                directionToTarget += avoidanceDirection * avoidanceStrength;
+            }
+        }
+
+        _moveDirection = directionToTarget.normalized;
         _rb.velocity = _moveDirection * moveSpeed;
     }
 
@@ -123,12 +149,14 @@ public class EnemyAI : MonoBehaviour
         if (Time.time >= nextFireTime)
         {
             Shoot();
+            fireRate = Random.Range(minFireRate, maxFireRate);
             nextFireTime = Time.time + fireRate;
         }
     }
-    [ContextMenu("FIre")]
+
+    [ContextMenu("Fire")]
     private void Shoot()
-    {   
+    {
         SoundManager.Instance?.PlaySound(enemyShot, 1.5f);
         Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
     }

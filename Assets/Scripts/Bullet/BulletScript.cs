@@ -25,8 +25,6 @@ public class BulletScript : MonoBehaviour
 
     public int weaponNum;
 
-    public int damageKn = 40;
-
 
     [SerializeField] private float knifeFireRate = 0f;
     [SerializeField] private float pistolFireRate = 0.5f;
@@ -189,7 +187,7 @@ public class BulletScript : MonoBehaviour
 
         SoundManager.Instance?.PlaySound(knifeSlash, 2f);
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1f);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1.5f);
         foreach (Collider2D hit in hits)
         {
             if (hit.CompareTag("Enemy"))
@@ -197,7 +195,7 @@ public class BulletScript : MonoBehaviour
                 Health health = hit.GetComponent<Health>();
                 if (health != null)
                 {
-                    health.TakeDamageP(damageKn);
+                    health.TakeDamageP(100);
                 }
             }
         }
