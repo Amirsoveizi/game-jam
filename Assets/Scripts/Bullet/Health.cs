@@ -5,6 +5,7 @@ using System.Collections;
 public class Health : MonoBehaviour
 {
     public Animator enemyAnimator;
+    public Animator comradeAnimaator;
 
     public int maxHealth = 100;
     private int currentHealth;
@@ -36,13 +37,29 @@ public class Health : MonoBehaviour
             if (gameObject.tag == "Enemy")
             {
                 enemyAnimator.SetBool("IsDead", true);
-                StartCoroutine(DelayedDestroy(gameObject, 1.5f));
+                StartCoroutine(DelayedDestroyEnemy(gameObject, 1.5f));
+            }
+            else if (gameObject.tag == "Comrade")
+            {
+                comradeAnimaator.SetBool("IsDead", true);
+                StartCoroutine(DelayedDestroyComrade(gameObject, 1.5f));
             }
         }
         else 
         {
+            if (gameObject.tag == "Enemy")
+            {
                 enemyAnimator.SetTrigger("Damaged");
-                DelayDamage(0.0000000000001f);
+                DelayDamageEnemy(0.0000000000001f);
+            }
+            else if (gameObject.tag == "Comrade")
+            {
+                comradeAnimaator.SetTrigger("Damaged");
+                DelayDamageComrade(0.0000000000001f);
+            }    
+
+
+                
         }
     }
 
@@ -94,19 +111,30 @@ public class Health : MonoBehaviour
         UpdateHealthUI();
     }
 
-    private IEnumerator DelayedDestroy(GameObject objectToDestroy, float delay)
+    private IEnumerator DelayedDestroyEnemy(GameObject objectToDestroy, float delay)
     {
         yield return new WaitForSeconds(delay);
         Destroy(objectToDestroy);
     }
 
-    private IEnumerator DelayDamage(float delay)
+    private IEnumerator DelayedDestroyComrade(GameObject objectToDestroy, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(objectToDestroy);
+    }
+
+    private IEnumerator DelayDamageEnemy(float delay)
     {
         yield return new WaitForSeconds(delay);
 
         enemyAnimator.ResetTrigger("Damaged");
+    }
 
-        Debug.Log("Damaged trigger reset.");
+    private IEnumerator DelayDamageComrade(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        comradeAnimaator.ResetTrigger("Damaged");
     }
 
 
