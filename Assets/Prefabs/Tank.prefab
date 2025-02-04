@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 7690119452351292101}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7690119452027711792
 SpriteRenderer:
@@ -147,13 +147,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a60dd04d1d13f4a90d9b4cdfed673b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 12
-  shootingRange: 8
-  stoppingDistance: 4
+  minDetectionRange: 5
+  maxDetectionRange: 15
+  minShootingRange: 5
+  maxShootingRange: 10
+  minStoppingDistance: 2
+  maxStoppingDistance: 5
   moveSpeed: 2
-  fireRate: 1
+  minFireRate: 0.5
+  maxFireRate: 1.5
   wallAvoidanceForce: 5
   wallAvoidanceRotation: 45
+  avoidanceRadius: 3
+  avoidanceStrength: 0.5
   bulletPF: {fileID: 8661297534767530829, guid: de057a23fe82c574ba728d7dcb12940e, type: 3}
   muzzle: {fileID: 7690119452351292100}
 --- !u!1 &7690119452351292100

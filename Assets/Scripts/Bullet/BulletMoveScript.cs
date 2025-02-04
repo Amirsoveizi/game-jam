@@ -40,7 +40,7 @@ public class BulletMoveScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-         if (tag == "EnemyB PF" || tag == "TankB PF")
+        if (tag == "EnemyB PF" || tag == "TankB PF")
         {
             if (collision.gameObject.tag == "Player")
             {
@@ -58,11 +58,43 @@ public class BulletMoveScript : MonoBehaviour
                     health.TakeDamage(damageE);
                 }
             }
-            Destroy(gameObject);
+            if (tag == "TankB PF" 
+                && collision.gameObject.tag != "PistolB PF"
+                && collision.gameObject.tag != "RifleB PF"
+                && collision.gameObject.tag != "ComradeB PF"
+                && collision.gameObject.tag != "ShotgunB PF")
+                Destroy(gameObject);
+            else if (tag == "EnemyB PF")
+                Destroy(gameObject);
+        }
+        else if (tag == "BoatB PF")
+        {
+            if (collision.gameObject.tag == "Player")
+            {
+                Health health = collision.gameObject.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.TakeDamageP(damageE);
+                }
+            }
+            else if (collision.gameObject.tag == "Comrade")
+            {
+                Health health = collision.gameObject.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.TakeDamage(damageE);
+                }
+            }
+            if (collision.gameObject.tag != "PistolB PF"
+                && collision.gameObject.tag != "RifleB PF"
+                && collision.gameObject.tag != "ComradeB PF"
+                && collision.gameObject.tag != "ShotgunB PF"
+                && collision.gameObject.tag != "Boat")
+                Destroy(gameObject);
         }
         else if (tag == "PistolB PF" || tag == "RifleB PF" || tag == "ComradeB PF")
         {
-            if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Tank")
+            if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Tank" || collision.gameObject.tag == "Boat")
             {
                 Health health = collision.gameObject.GetComponent<Health>();
                 if (health != null)
@@ -70,13 +102,13 @@ public class BulletMoveScript : MonoBehaviour
                     health.TakeDamage(damageP);
                 }
             }
-            if (collision.gameObject.tag != "EnemyB PF") Destroy(gameObject);
+            if (collision.gameObject.tag != "EnemyB PF" || collision.gameObject.tag == "TankB PF" || collision.gameObject.tag == "BoatB PF") Destroy(gameObject);
         }
         else
         {
             if (collision.gameObject.tag != "ShotgunB PF")
             {
-                if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Tank")
+                if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Tank" || collision.gameObject.tag == "Boat")
                 {
                     Health health = collision.gameObject.GetComponent<Health>();
                     if (health != null)
@@ -84,7 +116,7 @@ public class BulletMoveScript : MonoBehaviour
                         health.TakeDamage(damageP);
                     }
                 }
-                if (collision.gameObject.tag != "EnemyB PF") Destroy(gameObject);
+                if (collision.gameObject.tag != "EnemyB PF" || collision.gameObject.tag == "TankB PF" || collision.gameObject.tag == "BoatB PF") Destroy(gameObject);
             }
 
         }

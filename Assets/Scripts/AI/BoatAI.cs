@@ -21,7 +21,8 @@ public class BoatAI : MonoBehaviour
     private bool halfwayShooting = false;
 
     public GameObject bulletPF;
-    public GameObject muzzle;
+    public GameObject muzzle1;
+    public GameObject muzzle2;
     private AudioClip enemyShot;
 
     private void Start()
@@ -128,10 +129,12 @@ public class BoatAI : MonoBehaviour
         isShooting = false;
     }
 
+    [ContextMenu("Fire")]
     private void Shoot()
     {
         SoundManager.Instance?.PlaySound(enemyShot, 3f);
-        // Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
+        Instantiate(bulletPF, muzzle1.transform.position, muzzle1.transform.rotation);
+        Instantiate(bulletPF, muzzle2.transform.position, muzzle2.transform.rotation);
     }
 
     private void EndShootingMode()
