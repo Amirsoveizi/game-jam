@@ -32,12 +32,12 @@ public class Health : MonoBehaviour
             if (gameObject.tag == "Enemy")
             {
                 enemyAnimator.SetBool("IsDead", true);
-                StartCoroutine(DelayedDestroy(gameObject, 1.5f));
+                StartCoroutine(DelayedDestroyEnemy(gameObject, 1.5f));
             }
             else if (gameObject.tag == "Comrade")
             {
                 comradeAnimaator.SetBool("IsDead", true);
-                StartCoroutine(DelayedDestroy(gameObject, 1.5f));
+                StartCoroutine(DelayedDestroyComrade(gameObject, 1.5f));
             }
         }
         else 
@@ -106,7 +106,13 @@ public class Health : MonoBehaviour
         UpdateHealthUI();
     }
 
-    private IEnumerator DelayedDestroy(GameObject objectToDestroy, float delay)
+    private IEnumerator DelayedDestroyEnemy(GameObject objectToDestroy, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(objectToDestroy);
+    }
+
+    private IEnumerator DelayedDestroyComrade(GameObject objectToDestroy, float delay)
     {
         yield return new WaitForSeconds(delay);
         Destroy(objectToDestroy);
