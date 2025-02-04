@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     private int currentHealth;
 
     private TextMeshProUGUI healthText;
+    private static Score score;
 
     void Start()
     {
@@ -17,6 +18,10 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
         if (gameObject.tag == "Player") UpdateHealthUI();
         Debug.Log(gameObject.name + " started with " + currentHealth + " health.");
+        if(score == null)
+        {
+           score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
+        }
     }
 
     public void TakeDamage(int damage)
