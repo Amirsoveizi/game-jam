@@ -6,20 +6,19 @@ public class CheckPoint : MonoBehaviour
 {
     private Transform player;
     public static Vector3 respawnPoint;
+    private Vector3 sp;
     private static Score score;
     public GameObject comrade;
-
-    private void Awake()
-    {
-        if(score == null)
-        {
-            score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
-        }
-    }
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         respawnPoint = player.position;
+        sp = transform.position;
+
+        if (score == null)
+        {
+            score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,7 +40,7 @@ public class CheckPoint : MonoBehaviour
 
     private void SpawnComrad()
     {
-        int comrades = score.score / 5;
+        int comrades = score.score / 10;
         if (comrades > 3)
         {
             comrades = 3;
@@ -49,7 +48,7 @@ public class CheckPoint : MonoBehaviour
 
         for (int i = 0; i < comrades; i++)
         {
-            Instantiate(comrade,player);
+            Instantiate(comrade, sp, Quaternion.identity);
         }
     }
 }

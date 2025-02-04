@@ -115,6 +115,7 @@ public class Health : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         Destroy(objectToDestroy);
+        score.UpdateStatus(5);
     }
 
     private IEnumerator DelayedDestroyComrade(GameObject objectToDestroy, float delay)
