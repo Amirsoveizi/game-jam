@@ -10,13 +10,14 @@ public class SaveableObject : MonoBehaviour,IBind<SaveableData>
     {
         if(health != null)
         {
-            health.Bind(data);
+            //health.Bind(data);
         }
     }
 
     public SaveableData GetData()
     {
-        return health.GetData();
+        //return health.GetData();
+        return new SaveableData();
     }
 
     private void Awake()
