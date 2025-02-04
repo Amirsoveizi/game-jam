@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1a18785163e1b428c2a857afb3dcbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: -5034704442103977953}
   enemyDetectionRange: 5
   playerDetectionRange: 20
   stoppingDistance: 2.5
@@ -216,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ccb751211923e4388675c6ad3e22b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAnimator: {fileID: 0}
+  enemyAnimator: {fileID: -5034704442103977953}
   comradeAnimaator: {fileID: -5034704442103977953}
   maxHealth: 100
 --- !u!95 &-5034704442103977953

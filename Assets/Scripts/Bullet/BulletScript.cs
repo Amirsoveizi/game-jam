@@ -55,10 +55,6 @@ public class BulletScript : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (!Input.GetKey(KeyCode.LeftControl))
-        {
-
-
             if (weaponSwitch.getWeapon() == 3)
             {
                 if (Input.GetKey(KeyCode.Mouse0) && timer >= fireRate)
@@ -97,7 +93,7 @@ public class BulletScript : MonoBehaviour
                         Knife();
                     }
                     timer = 0;
-                }
+                
             }
         }
     }

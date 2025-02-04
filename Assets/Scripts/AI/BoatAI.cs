@@ -132,7 +132,7 @@ public class BoatAI : MonoBehaviour
     [ContextMenu("Fire")]
     private void Shoot()
     {
-        SoundManager.Instance?.PlaySound(enemyShot, 3f);
+        SoundManager.Instance?.PlaySound(enemyShot, 1f);
         Instantiate(bulletPF, muzzle1.transform.position, muzzle1.transform.rotation);
         Instantiate(bulletPF, muzzle2.transform.position, muzzle2.transform.rotation);
     }
