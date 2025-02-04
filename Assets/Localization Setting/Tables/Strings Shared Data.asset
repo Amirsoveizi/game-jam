@@ -47,6 +47,10 @@ MonoBehaviour:
     m_Key: CreditsInfo
     m_Metadata:
       m_Items: []
+  - m_Id: 867340949377024
+    m_Key: Controlls
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
