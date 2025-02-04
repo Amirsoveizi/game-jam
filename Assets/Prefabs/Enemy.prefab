@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 1315700197551950501}
   - component: {fileID: 1315700197551950521}
   - component: {fileID: 1315700197551950520}
+  - component: {fileID: -7380906597220954318}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -206,13 +207,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a60dd04d1d13f4a90d9b4cdfed673b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 12
-  shootingRange: 8
-  stoppingDistance: 4
+  minDetectionRange: 5
+  maxDetectionRange: 15
+  minShootingRange: 5
+  maxShootingRange: 10
+  minStoppingDistance: 2
+  maxStoppingDistance: 5
   moveSpeed: 4
-  fireRate: 0.8
+  minFireRate: 0.5
+  maxFireRate: 1.5
   wallAvoidanceForce: 5
   wallAvoidanceRotation: 45
+  avoidanceRadius: 3
+  avoidanceStrength: 0.5
   bulletPF: {fileID: 7856923092366495741, guid: ebf784d677b7ff241afeb05aadd5c484, type: 3}
   muzzle: {fileID: 1315700197353347411}
 --- !u!114 &1315700197551950520
@@ -227,4 +234,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ccb751211923e4388675c6ad3e22b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAnimator: {fileID: -7380906597220954318}
   maxHealth: 50
+--- !u!95 &-7380906597220954318
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315700197551950498}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7d667931b588ae248b8292c731710f37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

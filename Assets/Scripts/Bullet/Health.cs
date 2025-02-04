@@ -1,8 +1,11 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class Health : MonoBehaviour
 {
+    public Animator enemyAnimator;
+
     public int maxHealth = 100;
     private int currentHealth;
 
@@ -18,16 +21,23 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log(gameObject.tag + " Health before damage: " + currentHealth);
         currentHealth -= damage;
         if (currentHealth < 0)
         {
             currentHealth = 0;
         }
-        Debug.Log(gameObject.tag + " Health after damage: " + currentHealth);
         if (currentHealth == 0)
         {
-            Die();
+            if (gameObject.tag == "Enemy")
+            {
+                enemyAnimator.SetBool("IsDead", true);
+                StartCoroutine(DelayedDestroy(gameObject, 1.5f));
+            }
+        }
+        else 
+        {
+                enemyAnimator.SetTrigger("Damaged");
+                DelayDamage(0.0000000000001f);
         }
     }
 
@@ -78,4 +88,21 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
         UpdateHealthUI();
     }
+
+    private IEnumerator DelayedDestroy(GameObject objectToDestroy, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(objectToDestroy);
+    }
+
+    private IEnumerator DelayDamage(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        enemyAnimator.ResetTrigger("Damaged");
+
+        Debug.Log("Damaged trigger reset.");
+    }
+
+
 }
