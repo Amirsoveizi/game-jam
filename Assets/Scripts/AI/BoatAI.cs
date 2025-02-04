@@ -3,13 +3,13 @@ using Audio;
 
 public class BoatAI : MonoBehaviour
 {
-    [SerializeField] private float radius = 5f;
-    [SerializeField] private float speed = 1f;
-    [SerializeField] private float fireRate = 0.5f;
-    [SerializeField] private int mincyclesBeforeStop = 1;
-    // [SerializeField] private int maxcyclesBeforeStop = 3;
+    [SerializeField] private float radius = 7f;
+    [SerializeField] private float speed = 1.6f;
+    [SerializeField] private float fireRate = 0.4f;
+    [SerializeField] private int minCyclesBeforeStop = 1;
     [SerializeField] private float rotationSpeed = 200f;
-    [SerializeField] private float shootingDuration = 2f;
+    [SerializeField] private float minShootingDuration = 2f;
+    [SerializeField] private float maxShootingDuration = 5f;
 
     private Rigidbody2D _rb;
     private Transform _target;
@@ -18,6 +18,7 @@ public class BoatAI : MonoBehaviour
     private int cyclesCompleted = 0;
     private bool isShooting = false;
     private bool isInShootingMode = false;
+    private bool halfwayShooting = false;
 
     public GameObject bulletPF;
     public GameObject muzzle;
@@ -43,19 +44,38 @@ public class BoatAI : MonoBehaviour
         angle += speed * Time.deltaTime;
         transform.position = GetLemniscatePoint(angle);
 
+        if (angle >= Mathf.PI && !halfwayShooting)
+        {
+            halfwayShooting = true;
+            if (Random.Range(0, 2) == 0)
+            {
+                StartShooting();
+            }
+        }
+
         if (angle >= Mathf.PI * 2)
         {
             cyclesCompleted++;
             angle = 0f;
+            halfwayShooting = false;
 
-            if (cyclesCompleted >= mincyclesBeforeStop)
+            if (cyclesCompleted >= minCyclesBeforeStop)
             {
-                isShooting = true;
+                if (Random.Range(0, 2) == 0)
+                {
+                    StartShooting();
+                }
                 cyclesCompleted = 0;
-                isInShootingMode = true;
-                Invoke(nameof(EndShootingMode), shootingDuration);
             }
         }
+    }
+
+    private void StartShooting()
+    {
+        isShooting = true;
+        isInShootingMode = true;
+        float shootingDuration = Random.Range(minShootingDuration, maxShootingDuration);
+        Invoke(nameof(EndShootingMode), shootingDuration);
     }
 
     private Vector2 GetLemniscatePoint(float angle)

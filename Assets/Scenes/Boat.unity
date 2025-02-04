@@ -1259,12 +1259,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ad72a877b9cbc43859b89aaeac5c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
-  speed: 1
-  fireRate: 0.5
-  mincyclesBeforeStop: 1
+  radius: 7
+  speed: 1.6
+  fireRate: 0.4
+  minCyclesBeforeStop: 1
   rotationSpeed: 200
-  shootingDuration: 2
+  minShootingDuration: 2
+  maxShootingDuration: 4
   bulletPF: {fileID: 0}
   muzzle: {fileID: 0}
 --- !u!50 &1366959493
@@ -1279,7 +1280,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 200
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
