@@ -5,6 +5,8 @@ using Audio;
 
 public class ComradeAI : MonoBehaviour
 {
+
+    public Animator animator;
     [SerializeField] private float enemyDetectionRange = 5f;
     [SerializeField] private float playerDetectionRange = 20f;
     [SerializeField] private float stoppingDistance = 2.5f;
@@ -106,9 +108,12 @@ public class ComradeAI : MonoBehaviour
 
     private void Shoot()
     {
+        if (animator.GetBool("IsDead")) return;
+
         SoundManager.Instance?.PlaySound(pistolShot, 1.5f);
         Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
     }
+
 
     private void RotateTowards(Vector2 targetPosition)
     {

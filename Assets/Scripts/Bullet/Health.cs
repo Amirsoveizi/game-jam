@@ -5,6 +5,7 @@ using System.Collections;
 public class Health : MonoBehaviour
 {
     public Animator enemyAnimator;
+    public Animator comradeAnimaator;
 
     public int maxHealth = 100;
     private int currentHealth;
@@ -33,11 +34,27 @@ public class Health : MonoBehaviour
                 enemyAnimator.SetBool("IsDead", true);
                 StartCoroutine(DelayedDestroy(gameObject, 1.5f));
             }
+            else if (gameObject.tag == "Comrade")
+            {
+                comradeAnimaator.SetBool("IsDead", true);
+                StartCoroutine(DelayedDestroy(gameObject, 1.5f));
+            }
         }
         else 
         {
+            if (gameObject.tag == "Enemy")
+            {
                 enemyAnimator.SetTrigger("Damaged");
-                DelayDamage(0.0000000000001f);
+                DelayDamageEnemy(0.0000000000001f);
+            }
+            else if (gameObject.tag == "Comrade")
+            {
+                comradeAnimaator.SetTrigger("Damaged");
+                DelayDamageComrade(0.0000000000001f);
+            }    
+
+
+                
         }
     }
 
@@ -95,13 +112,18 @@ public class Health : MonoBehaviour
         Destroy(objectToDestroy);
     }
 
-    private IEnumerator DelayDamage(float delay)
+    private IEnumerator DelayDamageEnemy(float delay)
     {
         yield return new WaitForSeconds(delay);
 
         enemyAnimator.ResetTrigger("Damaged");
+    }
 
-        Debug.Log("Damaged trigger reset.");
+    private IEnumerator DelayDamageComrade(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        comradeAnimaator.ResetTrigger("Damaged");
     }
 
 

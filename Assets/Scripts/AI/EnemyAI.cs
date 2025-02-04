@@ -3,6 +3,8 @@ using Audio;
 
 public class EnemyAI : MonoBehaviour
 {
+    public Animator animator;
+
     [SerializeField] private float minDetectionRange = 5f;
     [SerializeField] private float maxDetectionRange = 15f;
     [SerializeField] private float minShootingRange = 5f;
@@ -157,6 +159,8 @@ public class EnemyAI : MonoBehaviour
     [ContextMenu("Fire")]
     private void Shoot()
     {
+        if (animator.GetBool("IsDead")) return;
+
         SoundManager.Instance?.PlaySound(enemyShot, 1.5f);
         Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
     }

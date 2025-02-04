@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a60dd04d1d13f4a90d9b4cdfed673b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: -7380906597220954318}
   minDetectionRange: 5
   maxDetectionRange: 15
   minShootingRange: 5
