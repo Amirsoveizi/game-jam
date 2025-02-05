@@ -16,8 +16,8 @@ public class Ammo : MonoBehaviour
     void Start()
     {
         KheshabText = GameObject.FindGameObjectWithTag("Ammo").GetComponent<TextMeshProUGUI>();
-        currentAmmoPistol = max;
-        currentAmmoRifle = max;
+        currentAmmoPistol = max -5 ;
+        currentAmmoRifle = max + 15 ;
         currentAmmoShotgun = max;
 
         UpdateَAmmoUI(currentAmmoPistol);
@@ -57,8 +57,8 @@ public class Ammo : MonoBehaviour
     }
     public static void ResetAmmo()
     {
-        currentAmmoPistol = 50;
-        currentAmmoRifle = 50;
+        currentAmmoPistol = 45;
+        currentAmmoRifle = 65;
         currentAmmoShotgun = 50;
         UpdateَAmmoUI(currentAmmoPistol);
         UpdateَAmmoUI(currentAmmoRifle);
