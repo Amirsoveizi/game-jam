@@ -111,6 +111,7 @@ public class Health : MonoBehaviour
         Ammo.ResetAmmo();
         UpdateHealthUI();
         gameObject.transform.position = CheckPoint.respawnPoint;
+        CheckPoint.MakeBossFullHp();
     }
     public void Resethealth()
     {
@@ -145,5 +146,8 @@ public class Health : MonoBehaviour
         comradeAnimaator.ResetTrigger("Damaged");
     }
 
-
+    public void MakeEnemeyFullHp()
+    {
+        currentHealth = maxHealth;
+    }
 }

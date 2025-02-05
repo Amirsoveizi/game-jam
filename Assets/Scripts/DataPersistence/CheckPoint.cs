@@ -37,7 +37,23 @@ public class CheckPoint : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    public static void MakeBossFullHp()
+    {
+        var tanks = GameObject.FindGameObjectsWithTag("Tank");
+        var boats = GameObject.FindGameObjectsWithTag("Boat");
 
+        foreach (var item in boats)
+        {
+            var hp = item.GetComponent<Health>();
+            hp.MakeEnemeyFullHp();
+            
+        }
+        foreach (var item in tanks)
+        {
+            var hp = item.GetComponent<Health>();
+            hp.MakeEnemeyFullHp();
+        }
+    }
     private void SpawnComrad()
     {
         int comrades = score.score / 10;
