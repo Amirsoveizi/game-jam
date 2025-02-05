@@ -24903,6 +24903,7 @@ MonoBehaviour:
   enemyAnimator: {fileID: 0}
   comradeAnimaator: {fileID: 0}
   maxHealth: 100
+  maxHealthBoat: 200
 --- !u!1 &1403521826
 GameObject:
   m_ObjectHideFlags: 0

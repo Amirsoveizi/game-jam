@@ -123,6 +123,7 @@ public class Health : MonoBehaviour
         }
         else
         {
+            Utils.instance.LoadSceneWithDelay("Hub",3);
             Destroy(gameObject);
         }
     }

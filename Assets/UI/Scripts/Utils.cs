@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -82,9 +83,14 @@ public class Utils : MonoBehaviour
 
     public void LoadSceneAsync(string sceneName)
     {
-        instance.StartCoroutine(LoadSceneCoroutine(sceneName));
+        instance.StartCoroutine(instance.LoadSceneCoroutine(sceneName));
     }
 
+    public async Task LoadSceneWithDelay(string sceneName,int delay)
+    {
+        await Task.Delay(delay * 1000);
+        instance.StartCoroutine(instance.LoadSceneCoroutine(sceneName));
+    }
     private IEnumerator LoadSceneCoroutine(string sceneName)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
