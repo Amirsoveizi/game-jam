@@ -15,7 +15,7 @@ public class BulletMoveScript : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _rb.velocity = transform.up * moveSpeed;
         Destroy(gameObject, 2f);
-        damageE = Random.Range(3, 7);
+        damageE = Random.Range(5, 10);
         if (tag == "ShotgunB PF")
         {
             damageP = 13;
