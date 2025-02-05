@@ -56,10 +56,10 @@ public class CheckPoint : MonoBehaviour
     }
     private void SpawnComrad()
     {
-        int comrades = score.score / 10;
-        if (comrades > 3)
+        int comrades = score.score / 12;
+        if (comrades > 2)
         {
-            comrades = 3;
+            comrades = 2;
         }
 
         for (int i = 0; i < comrades; i++)
