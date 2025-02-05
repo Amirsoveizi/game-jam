@@ -10,6 +10,9 @@ public class Health : MonoBehaviour
     public int maxHealth = 100;
     private int currentHealth;
 
+    public int maxHealthBoat = 200;
+
+    private int currentHealthBoat;
     private TextMeshProUGUI healthText;
     private static Score score;
 
@@ -17,11 +20,12 @@ public class Health : MonoBehaviour
     {
         if (gameObject.tag == "Player") healthText = GameObject.FindGameObjectWithTag("Health").GetComponent<TextMeshProUGUI>();
         currentHealth = maxHealth;
+        currentHealthBoat = maxHealthBoat;
         if (gameObject.tag == "Player") UpdateHealthUI();
-        Debug.Log(gameObject.name + " started with " + currentHealth + " health.");
-        if(score == null)
+        Debug.Log(gameObject.name + " started with " + currentHealthBoat + " health.");
+        if (score == null)
         {
-           score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
+            score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
         }
     }
 
@@ -46,13 +50,13 @@ public class Health : MonoBehaviour
                 StartCoroutine(DelayedDestroyComrade(gameObject, 1.5f));
             }
 
-            if(gameObject.tag == "Boat")
+            if (gameObject.tag == "Tank")
             {
                 Die();
             }
-        
+
         }
-        else 
+        else
         {
             if (gameObject.tag == "Enemy")
             {
@@ -63,16 +67,17 @@ public class Health : MonoBehaviour
             {
                 comradeAnimaator.SetTrigger("Damaged");
                 DelayDamageComrade(0.0000000000001f);
-            }    
+            }
 
 
-                
+
         }
     }
 
     public void TakeDamageP(int damage)
     {
         currentHealth -= damage;
+
         if (currentHealth < 0)
         {
             currentHealth = 0;
@@ -83,7 +88,20 @@ public class Health : MonoBehaviour
             Die();
         }
     }
-
+    public void TakeDamageB(int damage)
+    {
+        currentHealthBoat -= damage;
+        Debug.Log(currentHealthBoat);
+        if (currentHealthBoat < 0)
+        {
+            currentHealthBoat = 0;
+        }
+        UpdateHealthUI();
+        if (currentHealthBoat == 0)
+        {
+            Die();
+        }
+    }
     private void UpdateHealthUI()
     {
         if (healthText != null)
