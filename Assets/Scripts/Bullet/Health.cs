@@ -28,6 +28,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log(currentHealth);
         if (currentHealth < 0)
         {
             currentHealth = 0;
@@ -44,6 +45,12 @@ public class Health : MonoBehaviour
                 comradeAnimaator.SetBool("IsDead", true);
                 StartCoroutine(DelayedDestroyComrade(gameObject, 1.5f));
             }
+
+            if(gameObject.tag == "Boat")
+            {
+                Die();
+            }
+        
         }
         else 
         {
