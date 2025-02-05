@@ -44,14 +44,14 @@ public class PlayerMovements : MonoBehaviour
 
         _rb.MoveRotation(smoothedAngle);
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("Trigger  " + other.gameObject.name + " (Tag: " + other.tag + ")");
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     Debug.Log("Trigger  " + other.gameObject.name + " (Tag: " + other.tag + ")");
 
-        if (other.CompareTag("River1"))
-        {
-            Debug.Log("Player enter River");
-            Destroy(gameObject);
-        }
-    }
+    //     if (other.CompareTag("River1"))
+    //     {
+    //         Debug.Log("Player enter River");
+    //         Destroy(gameObject);
+    //     }
+    // }
 }
