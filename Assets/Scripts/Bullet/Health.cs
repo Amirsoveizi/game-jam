@@ -10,8 +10,7 @@ public class Health : MonoBehaviour
 
     public int maxHealth = 100;
     private int currentHealth;
-
-    public int maxHealthBoat = 200;
+    // public int maxHealthBoat = 300;
 
     private int currentHealthBoat;
     private TextMeshProUGUI healthText;
@@ -21,7 +20,7 @@ public class Health : MonoBehaviour
     {
         if (gameObject.tag == "Player") healthText = GameObject.FindGameObjectWithTag("Health").GetComponent<TextMeshProUGUI>();
         currentHealth = maxHealth;
-        currentHealthBoat = maxHealthBoat;
+        currentHealthBoat = 300;
         if (gameObject.tag == "Player") UpdateHealthUI();
         Debug.Log(gameObject.name + " started with " + currentHealthBoat + " health.");
         if (score == null)
@@ -126,14 +125,14 @@ public class Health : MonoBehaviour
         }
         else
         {
-            if(gameObject.tag == "Boat")
+            if (gameObject.tag == "Boat")
             {
                 Utils.instance.LoadSceneWithDelay("Hub", 3);
             }
             Destroy(gameObject);
         }
     }
-    
+
     private void Respawn()
     {
         currentHealth = 100;
@@ -178,6 +177,6 @@ public class Health : MonoBehaviour
     public void MakeEnemeyFullHp()
     {
         currentHealth = maxHealth;
-        currentHealthBoat = maxHealth;
+        currentHealthBoat = 300;
     }
 }

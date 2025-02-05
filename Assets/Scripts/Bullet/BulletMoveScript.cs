@@ -7,6 +7,7 @@ public class BulletMoveScript : MonoBehaviour
     public float moveSpeed;
     private Rigidbody2D _rb;
     public int damageE = 10;
+    public int damageEnemyToComrade;
     public int damageP = 1;
     // public int maxHealth=100;
     // private int currentHealth;
@@ -16,6 +17,7 @@ public class BulletMoveScript : MonoBehaviour
         _rb.velocity = transform.up * moveSpeed;
         Destroy(gameObject, 2f);
         damageE = Random.Range(5, 10);
+        damageEnemyToComrade = 14;
         if (tag == "ShotgunB PF")
         {
             damageP = 13;
@@ -55,7 +57,7 @@ public class BulletMoveScript : MonoBehaviour
                 Health health = collision.gameObject.GetComponent<Health>();
                 if (health != null)
                 {
-                    health.TakeDamage(damageE);
+                    health.TakeDamage(damageEnemyToComrade);
                 }
             }
             if (tag == "TankB PF"
@@ -82,7 +84,7 @@ public class BulletMoveScript : MonoBehaviour
                 Health health = collision.gameObject.GetComponent<Health>();
                 if (health != null)
                 {
-                    health.TakeDamage(damageE);
+                    health.TakeDamage(damageEnemyToComrade);
                 }
             }
             if (collision.gameObject.tag != "PistolB PF"
