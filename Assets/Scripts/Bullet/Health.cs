@@ -42,13 +42,16 @@ public class Health : MonoBehaviour
         {
             if (gameObject.tag == "Enemy")
             {
-                enemyAnimator.SetBool("IsDead", true);
-                StartCoroutine(DelayedDestroyEnemy(gameObject, 1.5f));
+                Destroy(gameObject);
+                score.UpdateStatus(5);
+                // enemyAnimator.SetBool("IsDead", true);
+                // StartCoroutine(DelayedDestroyEnemy(gameObject, 1.5f));
             }
             else if (gameObject.tag == "Comrade")
             {
-                comradeAnimaator.SetBool("IsDead", true);
-                StartCoroutine(DelayedDestroyComrade(gameObject, 1.5f));
+                Destroy(gameObject);
+                // comradeAnimaator.SetBool("IsDead", true);
+                // StartCoroutine(DelayedDestroyComrade(gameObject, 1.5f));
             }
 
             if (gameObject.tag == "Tank")
@@ -142,18 +145,18 @@ public class Health : MonoBehaviour
         UpdateHealthUI();
     }
 
-    private IEnumerator DelayedDestroyEnemy(GameObject objectToDestroy, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Destroy(objectToDestroy);
-        score.UpdateStatus(5);
-    }
+    // private IEnumerator DelayedDestroyEnemy(GameObject objectToDestroy, float delay)
+    // {
+    //     yield return new WaitForSeconds(delay);
+    //     Destroy(objectToDestroy);
+    //     score.UpdateStatus(5);
+    // }
 
-    private IEnumerator DelayedDestroyComrade(GameObject objectToDestroy, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Destroy(objectToDestroy);
-    }
+    // private IEnumerator DelayedDestroyComrade(GameObject objectToDestroy, float delay)
+    // {
+    //     yield return new WaitForSeconds(delay);
+    //     Destroy(objectToDestroy);
+    // }
 
     private IEnumerator DelayDamageEnemy(float delay)
     {
