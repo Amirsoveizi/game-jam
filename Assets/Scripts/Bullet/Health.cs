@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System.Linq;
 
 public class Health : MonoBehaviour
 {
@@ -52,7 +53,10 @@ public class Health : MonoBehaviour
 
             if (gameObject.tag == "Tank")
             {
+                var s = OnBossDie.Find<OnBossDie>();
+                s.Spawn();
                 Die();
+
             }
 
         }
