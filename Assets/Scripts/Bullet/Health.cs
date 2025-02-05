@@ -127,7 +127,7 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
     private void Respawn()
     {
         currentHealth = 100;
@@ -172,5 +172,6 @@ public class Health : MonoBehaviour
     public void MakeEnemeyFullHp()
     {
         currentHealth = maxHealth;
+        currentHealthBoat = maxHealth;
     }
 }
