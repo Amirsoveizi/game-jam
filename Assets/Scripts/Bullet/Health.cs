@@ -85,7 +85,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
 
         if (gameObject.tag == "Player")

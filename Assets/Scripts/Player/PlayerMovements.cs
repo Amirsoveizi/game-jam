@@ -10,13 +10,14 @@ public class PlayerMovements : MonoBehaviour
     private Rigidbody2D _rb;
     private Camera _camera;
     public Animator animator;
-
+    private Health health;
     private Vector2 _moveInput;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _camera = Camera.main;
+        health = GetComponent<Health>();
     }
 
     private void Update()
@@ -44,14 +45,13 @@ public class PlayerMovements : MonoBehaviour
 
         _rb.MoveRotation(smoothedAngle);
     }
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     Debug.Log("Trigger  " + other.gameObject.name + " (Tag: " + other.tag + ")");
+     private void OnTriggerEnter2D(Collider2D other)
+     {
+         Debug.Log("Trigger  " + other.gameObject.name + " (Tag: " + other.tag + ")");
 
-    //     if (other.CompareTag("River1"))
-    //     {
-    //         Debug.Log("Player enter River");
-    //         Destroy(gameObject);
-    //     }
-    // }
+         if (other.CompareTag("River1"))
+         {
+            health.Die();
+         }
+     }
 }
