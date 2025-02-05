@@ -9,7 +9,8 @@ public class TankAI : MonoBehaviour
     [SerializeField] private float shootingRange = 15f;
     [SerializeField] private float stoppingDistance = 8f;
     [SerializeField] private float moveSpeed = 1.5f;
-    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private float minFireRate = 0.5f;
+    [SerializeField] private float maxFireRate = 1.7f;
     [SerializeField] private float wallAvoidanceForce = 5f;
     [SerializeField] private float wallAvoidanceRotation = 45f;
 
@@ -132,10 +133,11 @@ public class TankAI : MonoBehaviour
         if (Time.time >= nextFireTime)
         {
             Shoot();
-            nextFireTime = Time.time + fireRate;
+            nextFireTime = Time.time + Random.Range(minFireRate, maxFireRate); // Randomize fire rate
         }
     }
-    [ContextMenu("FIre")]
+    
+    [ContextMenu("Fire")]
     private void Shoot()
     {   
         SoundManager.Instance?.PlaySound(enemyShot, 3f);

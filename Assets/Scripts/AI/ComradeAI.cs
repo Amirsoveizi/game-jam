@@ -5,13 +5,18 @@ using Audio;
 
 public class ComradeAI : MonoBehaviour
 {
-
     public Animator animator;
-    [SerializeField] private float enemyDetectionRange = 5f;
-    [SerializeField] private float playerDetectionRange = 20f;
-    [SerializeField] private float stoppingDistance = 2.5f;
+
+    [SerializeField] private float minEnemyDetectionRange = 4f;
+    [SerializeField] private float maxEnemyDetectionRange = 8f;
+    [SerializeField] private float minPlayerDetectionRange = 15f;
+    [SerializeField] private float maxPlayerDetectionRange = 25f;
+    [SerializeField] private float minStoppingDistance = 2f;
+    [SerializeField] private float maxStoppingDistance = 4f;
     [SerializeField] private float moveSpeed = 4f;
-    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private float minFireRate = 0.8f;
+    [SerializeField] private float maxFireRate = 1.5f;
+    [SerializeField] private float avoidPlayerDistance = 1.5f;
 
     private Rigidbody2D _rb;
     private Transform _player;
@@ -19,13 +24,24 @@ public class ComradeAI : MonoBehaviour
     private Vector2 _moveDirection;
     private float nextFireTime = 0f;
     
+    private float enemyDetectionRange;
+    private float playerDetectionRange;
+    private float stoppingDistance;
+    private float fireRate;
+
     public GameObject bulletPF;
     public GameObject muzzle;
 
     private AudioClip pistolShot;
 
-    private void Start() {
-            pistolShot = Resources.Load<AudioClip>("SFX/PistolShot");
+    private void Start()
+    {
+        pistolShot = Resources.Load<AudioClip>("SFX/PistolShot");
+
+        enemyDetectionRange = Random.Range(minEnemyDetectionRange, maxEnemyDetectionRange);
+        playerDetectionRange = Random.Range(minPlayerDetectionRange, maxPlayerDetectionRange);
+        stoppingDistance = Random.Range(minStoppingDistance, maxStoppingDistance);
+        fireRate = Random.Range(minFireRate, maxFireRate);
     }
 
     private void Awake()
@@ -44,7 +60,7 @@ public class ComradeAI : MonoBehaviour
         }
         else if (_player != null)
         {
-            FollowPlayer();
+            FollowOrAvoidPlayer();
         }
     }
 
@@ -82,24 +98,31 @@ public class ComradeAI : MonoBehaviour
 
         RotateTowards(_targetEnemy.position);
 
-        if (Time.time >= nextFireTime)
+        if (Time.time >= nextFireTime && !IsFacingWall())
         {
             Shoot();
             nextFireTime = Time.time + fireRate;
         }
     }
 
-    private void FollowPlayer()
+    private void FollowOrAvoidPlayer()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, _player.position);
 
-        if (distanceToPlayer <= playerDetectionRange && distanceToPlayer > stoppingDistance)
+        if (distanceToPlayer < avoidPlayerDistance)
         {
+            _moveDirection = (transform.position - _player.position).normalized;
+            _rb.velocity = _moveDirection * moveSpeed * 0.8f; // Slightly slower retreat
+        }
+        else if (distanceToPlayer <= playerDetectionRange && distanceToPlayer > stoppingDistance)
+        {
+            // Follow player if within range
             _moveDirection = (_player.position - transform.position).normalized;
             _rb.velocity = _moveDirection * moveSpeed;
         }
         else
         {
+            // Stop moving when close enough
             _rb.velocity = Vector2.zero;
         }
 
@@ -114,11 +137,16 @@ public class ComradeAI : MonoBehaviour
         Instantiate(bulletPF, muzzle.transform.position, transform.rotation);
     }
 
-
     private void RotateTowards(Vector2 targetPosition)
     {
         Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
         float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
         _rb.rotation = targetAngle;
+    }
+
+    private bool IsFacingWall()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(muzzle.transform.position, muzzle.transform.up, 2f);
+        return hit.collider != null && hit.collider.CompareTag("Wall");
     }
 }

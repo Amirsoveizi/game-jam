@@ -18,12 +18,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float wallAvoidanceRotation = 45f;
     [SerializeField] private float avoidanceRadius = 3f;
     [SerializeField] private float avoidanceStrength = 0.5f;
+    [SerializeField] private LayerMask obstacleMask; 
 
     private Rigidbody2D _rb;
     private Transform _target;
     private Vector2 _moveDirection;
     private float nextFireTime = 0f;
-    private bool _isRotating = false;
     private bool targetSpotted = false;
     private float stoppingDistance;
     private float fireRate;
@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        fireRate = Random.Range(minFireRate, maxFireRate); // Randomize fire rate at the start
+        fireRate = Random.Range(minFireRate, maxFireRate);
     }
 
     private void Update()
@@ -84,7 +84,6 @@ public class EnemyAI : MonoBehaviour
         else
         {
             _rb.velocity = Vector2.zero;
-            _isRotating = false;
         }
     }
 
@@ -148,7 +147,7 @@ public class EnemyAI : MonoBehaviour
 
     private void ShootIfReady()
     {
-        if (Time.time >= nextFireTime)
+        if (Time.time >= nextFireTime && CanSeeTarget(_target.position))
         {
             Shoot();
             fireRate = Random.Range(minFireRate, maxFireRate);
@@ -167,15 +166,11 @@ public class EnemyAI : MonoBehaviour
 
     private void RotateTowardsTarget()
     {
-        if (_target != null && !_isRotating && _target.position != transform.position)
+        if (_target != null)
         {
-            _isRotating = true;
-
             Vector2 direction = (_target.position - transform.position).normalized;
             float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             _rb.rotation = targetAngle;
-
-            _isRotating = false;
         }
     }
 
@@ -195,7 +190,6 @@ public class EnemyAI : MonoBehaviour
             Vector2 reflection = Vector2.Reflect(_moveDirection, collisionNormal);
 
             _rb.AddForce(reflection * wallAvoidanceForce, ForceMode2D.Impulse);
-
             RotateAfterWallCollision();
         }
     }
@@ -216,5 +210,16 @@ public class EnemyAI : MonoBehaviour
             _moveDirection = (_target.position - transform.position).normalized;
             _rb.velocity = _moveDirection * moveSpeed;
         }
+    }
+    private bool CanSeeTarget(Vector2 targetPosition)
+    {
+        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, shootingRange, obstacleMask);
+
+        if (hit.collider != null && hit.collider.CompareTag("Wall"))
+        {
+            return false;
+        }
+        return true;
     }
 }
