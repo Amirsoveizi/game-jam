@@ -2398,8 +2398,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071675898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.14, y: 9.78, z: 0.46645668}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.1253, y: 9.6338, z: 0.46645668}
+  m_LocalScale: {x: 0.5929818, y: 0.7001751, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -10586,7 +10586,6 @@ MonoBehaviour:
   enemyAnimator: {fileID: 0}
   comradeAnimaator: {fileID: 0}
   maxHealth: 500
-  maxHealthBoat: 200
 --- !u!1 &8717425981199463899 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7690119452351292100, guid: 61a1a4980cb57c140bdf4da99d9a2cdb, type: 3}
@@ -10609,7 +10608,8 @@ MonoBehaviour:
   shootingRange: 15
   stoppingDistance: 8
   moveSpeed: 1.5
-  fireRate: 1
+  minFireRate: 0.5
+  maxFireRate: 1.7
   wallAvoidanceForce: 5
   wallAvoidanceRotation: 45
   bulletPF: {fileID: 8661297534767530829, guid: de057a23fe82c574ba728d7dcb12940e, type: 3}
