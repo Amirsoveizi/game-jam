@@ -79,7 +79,7 @@ public class WeaponSwitch : MonoBehaviour
         }
         else if (_weaponNumber == 1)
         {
-            KheshabText.text = "_";
+            KheshabText.text = "-";
             SoundManager.Instance?.PlaySound(knifeEquip, 4f);
         }
         else
