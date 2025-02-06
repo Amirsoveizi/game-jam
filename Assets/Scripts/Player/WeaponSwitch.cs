@@ -22,6 +22,7 @@ public class WeaponSwitch : MonoBehaviour
         shotgunEquip = Resources.Load<AudioClip>("SFX/ShotgunEquip");
         knifeEquip = Resources.Load<AudioClip>("SFX/KnifeEquip");
         KheshabText = GameObject.FindGameObjectWithTag("Ammo").GetComponent<TextMeshProUGUI>();
+        KheshabText.text = "-";
     }
 
 
@@ -76,9 +77,14 @@ public class WeaponSwitch : MonoBehaviour
             SoundManager.Instance?.PlaySound(shotgunEquip, 4f);
             KheshabText.text = Ammo.currentAmmoShotgun.ToString();
         }
+        else if (_weaponNumber == 1)
+        {
+            KheshabText.text = "_";
+            SoundManager.Instance?.PlaySound(knifeEquip, 4f);
+        }
         else
         {
-            SoundManager.Instance?.PlaySound(knifeEquip, 4f);
+            KheshabText.text = "-";
         }
 
     }
