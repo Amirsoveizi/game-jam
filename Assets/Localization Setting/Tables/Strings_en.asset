@@ -47,10 +47,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 60046372229120
-    m_Localized: 'Group leader : Amir Soveizi
-
-      members : Parham Ghafourian,Soheil
-      Salavati,Navid Shirazi,kia abbasi'
+    m_Localized: 'Credits : Amir Soveizi, Parham Ghafourian,Soheil Salavati, Navid Shirazi'
     m_Metadata:
       m_Items: []
   - m_Id: 867340949377024
