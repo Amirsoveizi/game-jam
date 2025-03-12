@@ -1,9 +1,10 @@
-Arvand, First Game Project by Pixel Knight
+🕹 Arvand, First Game Project by Pixel Knight
 Made for Montazeri 2024 Game Jam
 
 Arvand is a top-down shooter game made with Unity for a 7-day game jam by 4 programming students. We almost learned everything about Unity in this week-long jam and used our C# knowledge to create a fun little game for everybody to enjoy. Have a blast!
 
-Features:
+✨️ Features:
+
 Original Classic Pixel Art
 Comrade System
 4 Different Weapons
@@ -11,10 +12,12 @@ Comrade System
 2 Intense Boss Fights at the End of Each Level
 Epic Soundtrack 
 
-Installation:
+📥 Installation:
+
 Download and install the game from the installer in Releases section. It's super simple.
 
-Controls
+🎮 Controls:
+
 WASD = Move
 Ctrl = Scout Ahead
 Mouse Left Click = Shoot
@@ -24,13 +27,15 @@ Mouse Scroll Wheel = Change Weapon
 3 = Shotgun
 4 = Knife
 
-Credits:
+👥️️ Credits:
+
 Amir Soveizi
 Parham Ghafourian
 Navid Shirazi
 Soheil Salavaati
 
-Soundtracks:
+🎼 Soundtracks:
+
 Hub: Summoning - Old Mornings Dawn
 Level 1: Andy James - M.D.K
 Level 2: Andy James - Valley Of Shadows
