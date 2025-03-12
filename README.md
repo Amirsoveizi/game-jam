@@ -1,7 +1,4 @@
-🕹 Arvand, First Game Project by Pixel Knight
-Made for Montazeri 2024 Game Jam
-
-Arvand is a top-down shooter game made with Unity for a 7-day game jam by 4 programming students. We almost learned everything about Unity in this week-long jam and used our C# knowledge to create a fun little game for everybody to enjoy. Have a blast!
+🕹 Arvand is a top-down shooter game made with Unity for a 7-day game jam by 4 programming students. We almost learned everything about Unity in this week-long jam and used our C# knowledge to create a fun little game for everybody to enjoy. Have a blast!
 
 ✨️ Features:
 
