@@ -167,9 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: En
   m_EditorClassIdentifier: 
-  hashCode: -1558937000
+  hashCode: 2187
   material: {fileID: -6650640917371461504}
-  materialHashCode: -1410064520
+  materialHashCode: 23192395
   m_Version: 1.1.0
   m_SourceFontFileGUID: 79838ab8fe3a0444585c2f464e0a910b
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 79838ab8fe3a0444585c2f464e0a910b, type: 3}
